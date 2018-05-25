@@ -41,6 +41,7 @@ Example_2802xAdcSoc.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_su
 Example_2802xAdcSoc.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/pll.h
 Example_2802xAdcSoc.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/wdog.h
 Example_2802xAdcSoc.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/sci.h
+Example_2802xAdcSoc.obj: ../DigitalFilters.h
 
 ../Example_2802xAdcSoc.c: 
 /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/DSP28x_Project.h: 
@@ -83,3 +84,4 @@ Example_2802xAdcSoc.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_su
 /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/pll.h: 
 /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/wdog.h: 
 /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/sci.h: 
+../DigitalFilters.h: 

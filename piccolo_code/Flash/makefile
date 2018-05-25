@@ -8,6 +8,7 @@ GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
+"./DigitalFilters.obj" \
 "./Example_2802xAdcSoc.obj" \
 "/home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/ccs/Debug/driverlib.lib" \
 $(GEN_CMDS__FLAG) \
@@ -153,8 +154,8 @@ Example_F2802xAdcSoc.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "Example_2802xAdcSoc.obj" 
-	-$(RM) "Example_2802xAdcSoc.d" 
+	-$(RM) "DigitalFilters.obj" "Example_2802xAdcSoc.obj" 
+	-$(RM) "DigitalFilters.d" "Example_2802xAdcSoc.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

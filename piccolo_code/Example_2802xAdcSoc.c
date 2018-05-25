@@ -11,7 +11,7 @@
 #include "common/include/pwm.h"
 #include "common/include/wdog.h"
 #include "common/include/sci.h"
-
+#include "DigitalFilters.h"
 //
 // Function Prototypes
 //
@@ -27,6 +27,8 @@ void scia_msg(char *msg);
 //
 // Globals
 //
+
+struct filter_DF2 filters[7];
 
 //uint16_t curr1,curr2,volt1,volt2;
 uint8_t counter=0;
@@ -189,8 +191,8 @@ void main(void)
     // Generate pulse on 1st event
     //    
     PWM_setSocAPeriod(myPwm, PWM_SocPeriod_FirstEvent);
-    PWM_setCmpA(myPwm, 0x000F);                      // Set compare A value
-    PWM_setPeriod(myPwm, 0x00FF);                    // Set period for ePWM1
+    PWM_setCmpA(myPwm, 0x00FF);                      // Set compare A value
+    PWM_setPeriod(myPwm, 0x1770);                    // Set period for ePWM1
     PWM_setCounterMode(myPwm, PWM_CounterMode_Up);   // count up and start
     CLK_enableTbClockSync(myClk);
     //setup gpio for TX RX
@@ -202,6 +204,10 @@ void main(void)
     GPIO_setMode(myGpio, GPIO_Number_34, GPIO_34_Mode_GeneralPurpose);
     GPIO_setDirection(myGpio,GPIO_Number_34,GPIO_Direction_Output);
     GPIO_setLow(myGpio, GPIO_Number_34);
+
+    GPIO_setMode(myGpio, GPIO_Number_16, GPIO_16_Mode_GeneralPurpose);
+    GPIO_setDirection(myGpio,GPIO_Number_16,GPIO_Direction_Output);
+    GPIO_setLow(myGpio, GPIO_Number_16);
 
     scia_echoback_init();           // Initialize SCI for echoback
     scia_fifo_init();               // Initialize the SCI FIFO
@@ -235,6 +241,7 @@ uint16_t volt2[100];
 
 
 __interrupt void adc_isr(void){
+    GPIO_setHigh(myGpio, GPIO_Number_16);
     ADC_Obj *adc = (ADC_Obj*) myAdc;
     curr1[counter] = adc->ADCRESULT[0];
     volt1[counter] = adc->ADCRESULT[1];
@@ -256,6 +263,7 @@ __interrupt void adc_isr(void){
 
     // Acknowledge interrupt to PIE
     PIE_clearInt(myPie, PIE_GroupNumber_10);
+    GPIO_setLow(myGpio, GPIO_Number_16);
     return;
 }
 
