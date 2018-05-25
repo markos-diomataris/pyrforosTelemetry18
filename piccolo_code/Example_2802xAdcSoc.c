@@ -27,11 +27,8 @@ void scia_msg(char *msg);
 //
 // Globals
 //
-uint16_t LoopCount;
-uint16_t ConversionCount;
-uint16_t Voltage1[10];
-uint16_t Voltage2[10];
-uint16_t curr1,curr2,volt1,volt2;
+
+//uint16_t curr1,curr2,volt1,volt2;
 uint8_t counter=0;
 
 
@@ -49,12 +46,13 @@ SCI_Handle mySci;
 //
 // Main
 //
+CPU_Handle myCpu;
+PLL_Handle myPll;
+WDOG_Handle myWDog;
 char *msg;
 void main(void)
 {
-    CPU_Handle myCpu;
-    PLL_Handle myPll;
-    WDOG_Handle myWDog;
+
     //
     // Initialize all the handles needed for this application
     //
@@ -191,8 +189,8 @@ void main(void)
     // Generate pulse on 1st event
     //    
     PWM_setSocAPeriod(myPwm, PWM_SocPeriod_FirstEvent);
-    PWM_setCmpA(myPwm, 0x0FFF);                      // Set compare A value
-    PWM_setPeriod(myPwm, 0xFFFF);                    // Set period for ePWM1
+    PWM_setCmpA(myPwm, 0x000F);                      // Set compare A value
+    PWM_setPeriod(myPwm, 0x00FF);                    // Set period for ePWM1
     PWM_setCounterMode(myPwm, PWM_CounterMode_Up);   // count up and start
     CLK_enableTbClockSync(myClk);
     //setup gpio for TX RX
@@ -218,7 +216,7 @@ void main(void)
     //
     for(;;){
         DELAY_US(100000);
-        counter = 1;
+        is_time_to_send = 1;
 //        scia_msg(packet);
 
     }
@@ -228,21 +226,31 @@ void main(void)
 // adc_isr -
 //
 uint16_t packet=0;
+
+
+uint16_t curr1[100];
+uint16_t curr2[100];
+uint16_t volt1[100];
+uint16_t volt2[100];
+
+
 __interrupt void adc_isr(void){
     ADC_Obj *adc = (ADC_Obj*) myAdc;
-    curr1 = adc->ADCRESULT[0];
-    volt1 = adc->ADCRESULT[1];
-    curr2 = adc->ADCRESULT[2];
-    volt2 = adc->ADCRESULT[3];
+    curr1[counter] = adc->ADCRESULT[0];
+    volt1[counter] = adc->ADCRESULT[1];
+    curr2[counter] = adc->ADCRESULT[2];
+    volt2[counter++] = adc->ADCRESULT[3];
     //add badass code here//
 
-    if(counter == 1){
-        GPIO_setHigh(myGpio, GPIO_Number_34);
-//        DELAY_US(100);
+    //
+    if(counter==100)
+        counter=0;
+    if(is_time_to_send == 1){
+        GPIO_setHigh(myGpio, GPIO_Number_34);   //trigger interrypt to arduino
         scia_xmit(packet++);
         scia_xmit(42);
         GPIO_setLow(myGpio, GPIO_Number_34);
-        counter=0;
+        is_time_to_send=0;
     }
 
 
