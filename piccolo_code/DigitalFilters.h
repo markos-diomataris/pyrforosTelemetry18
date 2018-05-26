@@ -28,10 +28,15 @@ struct Second_order_filter{
  */
 double step_filter(struct Second_order_filter * filter, double input);
 
-/*
- * Initialize an DFII filter given a coefficient struct
- */
-void init_filter(struct Second_order_filter* filter);
+
+
+static struct Second_order_filter filter_1 = {
+    .a = {1,2,3},
+    .b = {2,3,4},
+    .gain = 0.003023232,
+    .buf = {0,0}
+};
+
 
 #endif
 

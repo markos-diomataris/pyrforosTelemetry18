@@ -11,6 +11,7 @@
 #include "common/include/pwm.h"
 #include "common/include/wdog.h"
 #include "common/include/sci.h"
+
 #include "DigitalFilters.h"
 #include "Initialization.h"
 #include "Communication.h"
@@ -42,7 +43,15 @@ PLL_Handle myPll;
 WDOG_Handle myWDog;
 
 
+extern struct Second_order_filter filter_1;
+
+struct Second_order_filter *filt[10];
+
+
 void main(void){
+    filt[0] = &filter_1;
+
+
     initialize();
     for(;;){
         DELAY_US(100000);

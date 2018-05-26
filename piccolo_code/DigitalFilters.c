@@ -22,10 +22,5 @@ double step_filter(struct Second_order_filter * filter, double input){
     return filter->gain*(u1*(filter->b[0]) + u3);
 }
 
-void init_filter(struct Second_order_filter* filter){
-    filter->buf[0] = filter->buf[1] = 0;
-
-    return;
-}
 
 
