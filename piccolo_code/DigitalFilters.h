@@ -29,8 +29,10 @@ struct Second_order_filter{
 double step_filter(struct Second_order_filter * filter, double input);
 
 
-
-static struct Second_order_filter filter_1 = {
+/*
+ * Here are defined all the second order filters that will be serialized
+ */
+static struct Second_order_filter filter_0 = {
     .a = {1,2,3},
     .b = {2,3,4},
     .gain = 0.003023232,

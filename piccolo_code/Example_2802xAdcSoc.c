@@ -43,20 +43,19 @@ PLL_Handle myPll;
 WDOG_Handle myWDog;
 
 
-extern struct Second_order_filter filter_1;
+extern struct Second_order_filter filter_0;
 
 struct Second_order_filter *filt[10];
 
 
 void main(void){
-    filt[0] = &filter_1;
+    filt[0] = &filter_0;
 
 
     initialize();
     for(;;){
         DELAY_US(100000);
         is_time_to_send = 1;
-
     }
 }
 

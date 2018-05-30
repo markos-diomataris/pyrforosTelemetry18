@@ -6,6 +6,28 @@
  *      Author: markos
  */
 
+
+
+
+
+/*
+ *       SECOND ORDER DIRECT FORM II
+ *                  w[n]
+ *  x[n]--->+---->---.----b0---+----->y[n]
+ *          ^        |         ^
+ *          |       1/z        |
+ *          |        |         |
+ *          |        v         |
+ *          +<--a1--mem0--b1-->+
+ *          ^        |         ^
+ *          |       1/z        |
+ *          |        |         |
+ *          |        v         |
+ *          |<--a2--mem1--b2-->|
+ *
+ */
+
+
 double step_filter(struct Second_order_filter * filter, double input){
     double u1,u2,u3;
     u2 = -filter->a[1]*(filter->buf[0])

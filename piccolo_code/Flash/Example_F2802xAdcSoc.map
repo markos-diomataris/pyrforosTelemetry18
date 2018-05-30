@@ -1,7 +1,7 @@
 ******************************************************************************
              TMS320C2000 Linker Unix v18.1.1                   
 ******************************************************************************
->> Linked Sat May 26 23:37:22 2018
+>> Linked Sun May 27 12:20:05 2018
 
 OUTPUT FILE NAME:   <Example_F2802xAdcSoc.out>
 ENTRY POINT SYMBOL: "code_start"  address: 003f7ff6
