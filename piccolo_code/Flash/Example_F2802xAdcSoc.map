@@ -1,7 +1,7 @@
 ******************************************************************************
              TMS320C2000 Linker Unix v18.1.1                   
 ******************************************************************************
->> Linked Sun May 27 12:20:05 2018
+>> Linked Thu May 31 04:08:57 2018
 
 OUTPUT FILE NAME:   <Example_F2802xAdcSoc.out>
 ENTRY POINT SYMBOL: "code_start"  address: 003f7ff6
@@ -15,7 +15,7 @@ PAGE 0:
   RAMM0                 00000050   000003b0  00000004  000003ac  RWIX
   OTP                   003d7800   00000400  00000000  00000400  RWIX
   FLASHB                003f6000   00001000  00000000  00001000  RWIX
-  FLASHA                003f7000   00000f80  00000a2f  00000551  RWIX
+  FLASHA                003f7000   00000f80  00000a9b  000004e5  RWIX
   CSM_RSVD              003f7f80   00000076  00000000  00000076  RWIX
   BEGIN                 003f7ff6   00000002  00000002  00000000  RWIX
   CSM_PWL_P0            003f7ff8   00000008  00000000  00000008  RWIX
@@ -28,8 +28,8 @@ PAGE 0:
 
 PAGE 1:
   BOOT_RSVD             00000000   00000050  00000000  00000050  RWIX
-  RAMM1                 00000400   00000400  0000020b  000001f5  RWIX
-  RAML0                 00008000   00000400  000002be  00000142  RWIX
+  RAMM1                 00000400   00000400  0000020c  000001f4  RWIX
+  RAML0                 00008000   00000400  00000240  000001c0  RWIX
 
 
 SECTION ALLOCATION MAP
@@ -40,12 +40,13 @@ section   page    origin      length       input sections
 ramfuncs   0    003f7000    00000004     RUN ADDR = 00000050
                   003f7000    00000004     driverlib.lib : f2802xx_asmfuncs.obj (ramfuncs)
 
-.cinit     0    003f79f8    00000037     
-                  003f79f8    0000001d     Example_2802xAdcSoc.obj (.cinit)
-                  003f7a15    0000000e     rts2800_ml.lib : exit.c.obj (.cinit)
-                  003f7a23    00000005                    : _lock.c.obj (.cinit:__lock)
-                  003f7a28    00000005                    : _lock.c.obj (.cinit:__unlock)
-                  003f7a2d    00000002     --HOLE-- [fill = 0]
+.cinit     0    003f7a76    00000026     
+                  003f7a76    0000000e     rts2800_ml.lib : exit.c.obj (.cinit)
+                  003f7a84    00000008     Example_2802xAdcSoc.obj (.cinit)
+                  003f7a8c    00000005     rts2800_ml.lib : _lock.c.obj (.cinit:__lock)
+                  003f7a91    00000005                    : _lock.c.obj (.cinit:__unlock)
+                  003f7a96    00000004                    : errno.c.obj (.cinit)
+                  003f7a9a    00000002     --HOLE-- [fill = 0]
 
 codestart 
 *          0    003f7ff6    00000002     
@@ -61,174 +62,176 @@ codestart
 
 vectors    0    003fffc2    00000000     DSECT
 
-.text      0    003f7004    000008f4     
+.text      0    003f7004    0000096d     
                   003f7004    000001c9     Initialization.obj (.text)
                   003f71cd    00000085     Communication.obj (.text)
-                  003f7252    00000078     rts2800_ml.lib : fs_add28.asm.obj (.text)
-                  003f72ca    0000005c     Example_2802xAdcSoc.obj (.text:retain)
-                  003f7326    0000005a     rts2800_ml.lib : fs_mpy28.asm.obj (.text)
-                  003f7380    00000054                    : boot28.asm.obj (.text)
-                  003f73d4    00000048     driverlib.lib : gpio.obj (.text:_GPIO_setMode)
-                  003f741c    00000029                   : gpio.obj (.text:_GPIO_setDirection)
-                  003f7445    00000029                   : gpio.obj (.text:_GPIO_setPullUp)
-                  003f746e    00000029     rts2800_ml.lib : exit.c.obj (.text)
-                  003f7497    00000027     driverlib.lib : gpio.obj (.text:_GPIO_setQualification)
-                  003f74be    00000024     rts2800_ml.lib : cpy_tbl.c.obj (.text)
-                  003f74e2    00000022     driverlib.lib : adc.obj (.text:_ADC_setIntMode)
-                  003f7504    00000022                   : adc.obj (.text:_ADC_setIntSrc)
-                  003f7526    0000001d     rts2800_ml.lib : memcpy.c.obj (.text)
-                  003f7543    0000001c     Example_2802xAdcSoc.obj (.text)
-                  003f755f    00000019     rts2800_ml.lib : args_main.c.obj (.text)
-                  003f7578    00000017     driverlib.lib : adc.obj (.text:_ADC_enableInt)
-                  003f758f    00000017                   : adc.obj (.text:_ADC_setSampleMode)
-                  003f75a6    00000015                   : pll.obj (.text:_PLL_setup)
-                  003f75bb    00000014                   : gpio.obj (.text:_GPIO_setHigh)
-                  003f75cf    00000014                   : gpio.obj (.text:_GPIO_setLow)
-                  003f75e3    00000014                   : pie.obj (.text:_PIE_enableAdcInt)
-                  003f75f7    00000012                   : adc.obj (.text:_ADC_setSocChanNumber)
-                  003f7609    00000012                   : adc.obj (.text:_ADC_setSocSampleWindow)
-                  003f761b    00000012                   : adc.obj (.text:_ADC_setSocTrigSrc)
-                  003f762d    00000011                   : adc.obj (.text:_ADC_setIntPulseGenMode)
-                  003f763e    00000011                   : adc.obj (.text:_ADC_setVoltRefSrc)
-                  003f764f    00000011                   : pie.obj (.text:_PIE_disableAllInts)
-                  003f7660    00000011                   : pie.obj (.text:_PIE_setDebugIntVectorTable)
-                  003f7671    0000000f                   : pie.obj (.text:_PIE_registerPieIntHandler)
-                  003f7680    0000000a                   : adc.obj (.text:_ADC_enable)
-                  003f768a    0000000a                   : adc.obj (.text:_ADC_enableBandGap)
-                  003f7694    0000000a                   : adc.obj (.text:_ADC_enableRefBuffers)
-                  003f769e    0000000a                   : adc.obj (.text:_ADC_init)
-                  003f76a8    0000000a                   : adc.obj (.text:_ADC_powerUp)
-                  003f76b2    0000000a                   : pie.obj (.text:_PIE_init)
-                  003f76bc    0000000a                   : sci.obj (.text:_SCI_resetChannels)
-                  003f76c6    0000000a                   : sci.obj (.text:_SCI_resetRxFifo)
-                  003f76d0    0000000a                   : sci.obj (.text:_SCI_resetTxFifo)
-                  003f76da    0000000a                   : f2802xx_asmfuncs.obj (.text)
-                  003f76e4    00000009                   : clk.obj (.text:_CLK_enablePwmClock)
-                  003f76ed    00000009                   : clk.obj (.text:_CLK_enableSciaClock)
-                  003f76f6    00000009                   : pwm.obj (.text:_PWM_setSocAPeriod)
-                  003f76ff    00000009                   : pwm.obj (.text:_PWM_setSocAPulseSrc)
-                  003f7708    00000009                   : sci.obj (.text:_SCI_putDataNonBlocking)
-                  003f7711    00000009     rts2800_ml.lib : _lock.c.obj (.text)
-                  003f771a    00000008     driverlib.lib : clk.obj (.text:_CLK_init)
-                  003f7722    00000008                   : flash.obj (.text:_FLASH_init)
-                  003f772a    00000008                   : gpio.obj (.text:_GPIO_init)
-                  003f7732    00000008                   : pll.obj (.text:_PLL_init)
-                  003f773a    00000008                   : pwm.obj (.text:_PWM_init)
-                  003f7742    00000008                   : sci.obj (.text:_SCI_init)
-                  003f774a    00000008                   : wdog.obj (.text:_WDOG_disable)
-                  003f7752    00000008                   : wdog.obj (.text:_WDOG_init)
-                  003f775a    00000008                   : f2802xx_codestartbranch.obj (.text)
-                  003f7762    00000007                   : clk.obj (.text:_CLK_enableAdcClock)
-                  003f7769    00000007                   : clk.obj (.text:_CLK_enableTbClockSync)
-                  003f7770    00000007                   : clk.obj (.text:_CLK_setOscSrc)
-                  003f7777    00000007                   : pll.obj (.text:_PLL_setDivider)
-                  003f777e    00000007                   : sci.obj (.text:_SCI_setRxFifoIntLevel)
-                  003f7785    00000007                   : sci.obj (.text:_SCI_setTxFifoIntLevel)
-                  003f778c    00000006                   : pll.obj (.text:_PLL_setMultiplier)
-                  003f7792    00000006                   : sci.obj (.text:_SCI_setBaudRate)
-                  003f7798    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT1_ISR)
-                  003f779d    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT2_ISR)
-                  003f77a2    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT3_ISR)
-                  003f77a7    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT4_ISR)
-                  003f77ac    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT5_ISR)
-                  003f77b1    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT6_ISR)
-                  003f77b6    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT7_ISR)
-                  003f77bb    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT8_ISR)
-                  003f77c0    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT9_ISR)
-                  003f77c5    00000005                   : f2802xx_defaultisr.obj (.text:_DATALOG_ISR)
-                  003f77ca    00000005                   : f2802xx_defaultisr.obj (.text:_ECAP1_INT_ISR)
-                  003f77cf    00000005                   : f2802xx_defaultisr.obj (.text:_EMPTY_ISR)
-                  003f77d4    00000005                   : f2802xx_defaultisr.obj (.text:_EMUINT_ISR)
-                  003f77d9    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM1_INT_ISR)
-                  003f77de    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM1_TZINT_ISR)
-                  003f77e3    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM2_INT_ISR)
-                  003f77e8    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM2_TZINT_ISR)
-                  003f77ed    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM3_INT_ISR)
-                  003f77f2    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM3_TZINT_ISR)
-                  003f77f7    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM4_INT_ISR)
-                  003f77fc    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM4_TZINT_ISR)
-                  003f7801    00000005                   : f2802xx_defaultisr.obj (.text:_I2CINT1A_ISR)
-                  003f7806    00000005                   : f2802xx_defaultisr.obj (.text:_I2CINT2A_ISR)
-                  003f780b    00000005                   : f2802xx_defaultisr.obj (.text:_ILLEGAL_ISR)
-                  003f7810    00000005                   : f2802xx_defaultisr.obj (.text:_INT13_ISR)
-                  003f7815    00000005                   : f2802xx_defaultisr.obj (.text:_INT14_ISR)
-                  003f781a    00000005                   : f2802xx_defaultisr.obj (.text:_NMI_ISR)
-                  003f781f    00000005                   : f2802xx_defaultisr.obj (.text:_PIE_RESERVED)
-                  003f7824    00000005                   : pie.obj (.text:_PIE_illegalIsr)
-                  003f7829    00000005                   : f2802xx_defaultisr.obj (.text:_RTOSINT_ISR)
-                  003f782e    00000005                   : f2802xx_defaultisr.obj (.text:_SCIRXINTA_ISR)
-                  003f7833    00000005                   : f2802xx_defaultisr.obj (.text:_SCITXINTA_ISR)
-                  003f7838    00000005                   : f2802xx_defaultisr.obj (.text:_SPIRXINTA_ISR)
-                  003f783d    00000005                   : f2802xx_defaultisr.obj (.text:_SPITXINTA_ISR)
-                  003f7842    00000005                   : f2802xx_defaultisr.obj (.text:_TINT0_ISR)
-                  003f7847    00000005                   : f2802xx_defaultisr.obj (.text:_USER10_ISR)
-                  003f784c    00000005                   : f2802xx_defaultisr.obj (.text:_USER11_ISR)
-                  003f7851    00000005                   : f2802xx_defaultisr.obj (.text:_USER12_ISR)
-                  003f7856    00000005                   : f2802xx_defaultisr.obj (.text:_USER1_ISR)
-                  003f785b    00000005                   : f2802xx_defaultisr.obj (.text:_USER2_ISR)
-                  003f7860    00000005                   : f2802xx_defaultisr.obj (.text:_USER3_ISR)
-                  003f7865    00000005                   : f2802xx_defaultisr.obj (.text:_USER4_ISR)
-                  003f786a    00000005                   : f2802xx_defaultisr.obj (.text:_USER5_ISR)
-                  003f786f    00000005                   : f2802xx_defaultisr.obj (.text:_USER6_ISR)
-                  003f7874    00000005                   : f2802xx_defaultisr.obj (.text:_USER7_ISR)
-                  003f7879    00000005                   : f2802xx_defaultisr.obj (.text:_USER8_ISR)
-                  003f787e    00000005                   : f2802xx_defaultisr.obj (.text:_USER9_ISR)
-                  003f7883    00000005                   : f2802xx_defaultisr.obj (.text:_WAKEINT_ISR)
-                  003f7888    00000005                   : f2802xx_defaultisr.obj (.text:_XINT1_ISR)
-                  003f788d    00000005                   : f2802xx_defaultisr.obj (.text:_XINT2_ISR)
-                  003f7892    00000005                   : f2802xx_defaultisr.obj (.text:_XINT3_ISR)
-                  003f7897    00000005                   : f2802xx_defaultisr.obj (.text:_rsvd_ISR)
-                  003f789c    00000005     rts2800_ml.lib : fs_neg28.asm.obj (.text)
-                  003f78a1    00000004     driverlib.lib : cpu.obj (.text:_CPU_enableInt)
-                  003f78a5    00000004                   : cpu.obj (.text:_CPU_init)
-                  003f78a9    00000004                   : pwm.obj (.text:_PWM_enableSocAPulse)
-                  003f78ad    00000004                   : pwm.obj (.text:_PWM_setCounterMode)
-                  003f78b1    00000004                   : sci.obj (.text:_SCI_clearRxFifoInt)
-                  003f78b5    00000004                   : sci.obj (.text:_SCI_clearTxFifoInt)
-                  003f78b9    00000004                   : sci.obj (.text:_SCI_enableFifoEnh)
-                  003f78bd    00000004                   : sci.obj (.text:_SCI_getTxFifoStatus)
-                  003f78c1    00000004                   : sci.obj (.text:_SCI_setCharLength)
-                  003f78c5    00000004                   : sci.obj (.text:_SCI_setNumStopBits)
-                  003f78c9    00000003                   : cpu.obj (.text:_CPU_clearIntFlags)
-                  003f78cc    00000003                   : cpu.obj (.text:_CPU_disableGlobalInts)
-                  003f78cf    00000003                   : cpu.obj (.text:_CPU_enableDebugInt)
-                  003f78d2    00000003                   : cpu.obj (.text:_CPU_enableGlobalInts)
-                  003f78d5    00000003                   : pie.obj (.text:_PIE_disable)
-                  003f78d8    00000003                   : pie.obj (.text:_PIE_enable)
-                  003f78db    00000003                   : pll.obj (.text:_PLL_getClkStatus)
-                  003f78de    00000003                   : pll.obj (.text:_PLL_getLockStatus)
-                  003f78e1    00000003                   : sci.obj (.text:_SCI_disableParity)
-                  003f78e4    00000003                   : sci.obj (.text:_SCI_enable)
-                  003f78e7    00000003                   : sci.obj (.text:_SCI_enableRx)
-                  003f78ea    00000003                   : sci.obj (.text:_SCI_enableRxInt)
-                  003f78ed    00000003                   : sci.obj (.text:_SCI_enableTx)
-                  003f78f0    00000003                   : sci.obj (.text:_SCI_enableTxInt)
-                  003f78f3    00000002                   : pwm.obj (.text:_PWM_setPeriod)
-                  003f78f5    00000002     rts2800_ml.lib : pre_init.c.obj (.text)
-                  003f78f7    00000001                    : startup.c.obj (.text)
+                  003f7252    00000083     rts2800_ml.lib : fs_div28.asm.obj (.text)
+                  003f72d5    00000078                    : fs_add28.asm.obj (.text)
+                  003f734d    0000005c     Example_2802xAdcSoc.obj (.text:retain)
+                  003f73a9    0000005a     rts2800_ml.lib : fs_mpy28.asm.obj (.text)
+                  003f7403    00000054                    : boot28.asm.obj (.text)
+                  003f7457    00000048     driverlib.lib : gpio.obj (.text:_GPIO_setMode)
+                  003f749f    00000029                   : gpio.obj (.text:_GPIO_setDirection)
+                  003f74c8    00000029                   : gpio.obj (.text:_GPIO_setPullUp)
+                  003f74f1    00000029     rts2800_ml.lib : exit.c.obj (.text)
+                  003f751a    00000027     driverlib.lib : gpio.obj (.text:_GPIO_setQualification)
+                  003f7541    00000024     rts2800_ml.lib : cpy_tbl.c.obj (.text)
+                  003f7565    00000022     driverlib.lib : adc.obj (.text:_ADC_setIntMode)
+                  003f7587    00000022                   : adc.obj (.text:_ADC_setIntSrc)
+                  003f75a9    0000001d     rts2800_ml.lib : memcpy.c.obj (.text)
+                  003f75c6    00000019                    : args_main.c.obj (.text)
+                  003f75df    00000017     Example_2802xAdcSoc.obj (.text)
+                  003f75f6    00000017     driverlib.lib : adc.obj (.text:_ADC_enableInt)
+                  003f760d    00000017                   : adc.obj (.text:_ADC_setSampleMode)
+                  003f7624    00000015                   : pll.obj (.text:_PLL_setup)
+                  003f7639    00000014                   : gpio.obj (.text:_GPIO_setHigh)
+                  003f764d    00000014                   : gpio.obj (.text:_GPIO_setLow)
+                  003f7661    00000014                   : pie.obj (.text:_PIE_enableAdcInt)
+                  003f7675    00000012                   : adc.obj (.text:_ADC_setSocChanNumber)
+                  003f7687    00000012                   : adc.obj (.text:_ADC_setSocSampleWindow)
+                  003f7699    00000012                   : adc.obj (.text:_ADC_setSocTrigSrc)
+                  003f76ab    00000011                   : adc.obj (.text:_ADC_setIntPulseGenMode)
+                  003f76bc    00000011                   : adc.obj (.text:_ADC_setVoltRefSrc)
+                  003f76cd    00000011                   : pie.obj (.text:_PIE_disableAllInts)
+                  003f76de    00000011                   : pie.obj (.text:_PIE_setDebugIntVectorTable)
+                  003f76ef    0000000f                   : pie.obj (.text:_PIE_registerPieIntHandler)
+                  003f76fe    0000000a                   : adc.obj (.text:_ADC_enable)
+                  003f7708    0000000a                   : adc.obj (.text:_ADC_enableBandGap)
+                  003f7712    0000000a                   : adc.obj (.text:_ADC_enableRefBuffers)
+                  003f771c    0000000a                   : adc.obj (.text:_ADC_init)
+                  003f7726    0000000a                   : adc.obj (.text:_ADC_powerUp)
+                  003f7730    0000000a                   : pie.obj (.text:_PIE_init)
+                  003f773a    0000000a                   : sci.obj (.text:_SCI_resetChannels)
+                  003f7744    0000000a                   : sci.obj (.text:_SCI_resetRxFifo)
+                  003f774e    0000000a                   : sci.obj (.text:_SCI_resetTxFifo)
+                  003f7758    0000000a                   : f2802xx_asmfuncs.obj (.text)
+                  003f7762    00000009                   : clk.obj (.text:_CLK_enablePwmClock)
+                  003f776b    00000009                   : clk.obj (.text:_CLK_enableSciaClock)
+                  003f7774    00000009                   : pwm.obj (.text:_PWM_setSocAPeriod)
+                  003f777d    00000009                   : pwm.obj (.text:_PWM_setSocAPulseSrc)
+                  003f7786    00000009                   : sci.obj (.text:_SCI_putDataNonBlocking)
+                  003f778f    00000009     rts2800_ml.lib : _lock.c.obj (.text)
+                  003f7798    00000008     driverlib.lib : clk.obj (.text:_CLK_init)
+                  003f77a0    00000008                   : flash.obj (.text:_FLASH_init)
+                  003f77a8    00000008                   : gpio.obj (.text:_GPIO_init)
+                  003f77b0    00000008                   : pll.obj (.text:_PLL_init)
+                  003f77b8    00000008                   : pwm.obj (.text:_PWM_init)
+                  003f77c0    00000008                   : sci.obj (.text:_SCI_init)
+                  003f77c8    00000008                   : wdog.obj (.text:_WDOG_disable)
+                  003f77d0    00000008                   : wdog.obj (.text:_WDOG_init)
+                  003f77d8    00000008                   : f2802xx_codestartbranch.obj (.text)
+                  003f77e0    00000007                   : clk.obj (.text:_CLK_enableAdcClock)
+                  003f77e7    00000007                   : clk.obj (.text:_CLK_enableTbClockSync)
+                  003f77ee    00000007                   : clk.obj (.text:_CLK_setOscSrc)
+                  003f77f5    00000007                   : pll.obj (.text:_PLL_setDivider)
+                  003f77fc    00000007                   : sci.obj (.text:_SCI_setRxFifoIntLevel)
+                  003f7803    00000007                   : sci.obj (.text:_SCI_setTxFifoIntLevel)
+                  003f780a    00000006                   : pll.obj (.text:_PLL_setMultiplier)
+                  003f7810    00000006                   : sci.obj (.text:_SCI_setBaudRate)
+                  003f7816    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT1_ISR)
+                  003f781b    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT2_ISR)
+                  003f7820    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT3_ISR)
+                  003f7825    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT4_ISR)
+                  003f782a    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT5_ISR)
+                  003f782f    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT6_ISR)
+                  003f7834    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT7_ISR)
+                  003f7839    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT8_ISR)
+                  003f783e    00000005                   : f2802xx_defaultisr.obj (.text:_ADCINT9_ISR)
+                  003f7843    00000005                   : f2802xx_defaultisr.obj (.text:_DATALOG_ISR)
+                  003f7848    00000005                   : f2802xx_defaultisr.obj (.text:_ECAP1_INT_ISR)
+                  003f784d    00000005                   : f2802xx_defaultisr.obj (.text:_EMPTY_ISR)
+                  003f7852    00000005                   : f2802xx_defaultisr.obj (.text:_EMUINT_ISR)
+                  003f7857    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM1_INT_ISR)
+                  003f785c    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM1_TZINT_ISR)
+                  003f7861    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM2_INT_ISR)
+                  003f7866    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM2_TZINT_ISR)
+                  003f786b    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM3_INT_ISR)
+                  003f7870    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM3_TZINT_ISR)
+                  003f7875    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM4_INT_ISR)
+                  003f787a    00000005                   : f2802xx_defaultisr.obj (.text:_EPWM4_TZINT_ISR)
+                  003f787f    00000005                   : f2802xx_defaultisr.obj (.text:_I2CINT1A_ISR)
+                  003f7884    00000005                   : f2802xx_defaultisr.obj (.text:_I2CINT2A_ISR)
+                  003f7889    00000005                   : f2802xx_defaultisr.obj (.text:_ILLEGAL_ISR)
+                  003f788e    00000005                   : f2802xx_defaultisr.obj (.text:_INT13_ISR)
+                  003f7893    00000005                   : f2802xx_defaultisr.obj (.text:_INT14_ISR)
+                  003f7898    00000005                   : f2802xx_defaultisr.obj (.text:_NMI_ISR)
+                  003f789d    00000005                   : f2802xx_defaultisr.obj (.text:_PIE_RESERVED)
+                  003f78a2    00000005                   : pie.obj (.text:_PIE_illegalIsr)
+                  003f78a7    00000005                   : f2802xx_defaultisr.obj (.text:_RTOSINT_ISR)
+                  003f78ac    00000005                   : f2802xx_defaultisr.obj (.text:_SCIRXINTA_ISR)
+                  003f78b1    00000005                   : f2802xx_defaultisr.obj (.text:_SCITXINTA_ISR)
+                  003f78b6    00000005                   : f2802xx_defaultisr.obj (.text:_SPIRXINTA_ISR)
+                  003f78bb    00000005                   : f2802xx_defaultisr.obj (.text:_SPITXINTA_ISR)
+                  003f78c0    00000005                   : f2802xx_defaultisr.obj (.text:_TINT0_ISR)
+                  003f78c5    00000005                   : f2802xx_defaultisr.obj (.text:_USER10_ISR)
+                  003f78ca    00000005                   : f2802xx_defaultisr.obj (.text:_USER11_ISR)
+                  003f78cf    00000005                   : f2802xx_defaultisr.obj (.text:_USER12_ISR)
+                  003f78d4    00000005                   : f2802xx_defaultisr.obj (.text:_USER1_ISR)
+                  003f78d9    00000005                   : f2802xx_defaultisr.obj (.text:_USER2_ISR)
+                  003f78de    00000005                   : f2802xx_defaultisr.obj (.text:_USER3_ISR)
+                  003f78e3    00000005                   : f2802xx_defaultisr.obj (.text:_USER4_ISR)
+                  003f78e8    00000005                   : f2802xx_defaultisr.obj (.text:_USER5_ISR)
+                  003f78ed    00000005                   : f2802xx_defaultisr.obj (.text:_USER6_ISR)
+                  003f78f2    00000005                   : f2802xx_defaultisr.obj (.text:_USER7_ISR)
+                  003f78f7    00000005                   : f2802xx_defaultisr.obj (.text:_USER8_ISR)
+                  003f78fc    00000005                   : f2802xx_defaultisr.obj (.text:_USER9_ISR)
+                  003f7901    00000005                   : f2802xx_defaultisr.obj (.text:_WAKEINT_ISR)
+                  003f7906    00000005                   : f2802xx_defaultisr.obj (.text:_XINT1_ISR)
+                  003f790b    00000005                   : f2802xx_defaultisr.obj (.text:_XINT2_ISR)
+                  003f7910    00000005                   : f2802xx_defaultisr.obj (.text:_XINT3_ISR)
+                  003f7915    00000005                   : f2802xx_defaultisr.obj (.text:_rsvd_ISR)
+                  003f791a    00000004                   : cpu.obj (.text:_CPU_enableInt)
+                  003f791e    00000004                   : cpu.obj (.text:_CPU_init)
+                  003f7922    00000004                   : pwm.obj (.text:_PWM_enableSocAPulse)
+                  003f7926    00000004                   : pwm.obj (.text:_PWM_setCounterMode)
+                  003f792a    00000004                   : sci.obj (.text:_SCI_clearRxFifoInt)
+                  003f792e    00000004                   : sci.obj (.text:_SCI_clearTxFifoInt)
+                  003f7932    00000004                   : sci.obj (.text:_SCI_enableFifoEnh)
+                  003f7936    00000004                   : sci.obj (.text:_SCI_getTxFifoStatus)
+                  003f793a    00000004                   : sci.obj (.text:_SCI_setCharLength)
+                  003f793e    00000004                   : sci.obj (.text:_SCI_setNumStopBits)
+                  003f7942    00000003                   : cpu.obj (.text:_CPU_clearIntFlags)
+                  003f7945    00000003                   : cpu.obj (.text:_CPU_disableGlobalInts)
+                  003f7948    00000003                   : cpu.obj (.text:_CPU_enableDebugInt)
+                  003f794b    00000003                   : cpu.obj (.text:_CPU_enableGlobalInts)
+                  003f794e    00000003                   : pie.obj (.text:_PIE_disable)
+                  003f7951    00000003                   : pie.obj (.text:_PIE_enable)
+                  003f7954    00000003                   : pll.obj (.text:_PLL_getClkStatus)
+                  003f7957    00000003                   : pll.obj (.text:_PLL_getLockStatus)
+                  003f795a    00000003                   : sci.obj (.text:_SCI_disableParity)
+                  003f795d    00000003                   : sci.obj (.text:_SCI_enable)
+                  003f7960    00000003                   : sci.obj (.text:_SCI_enableRx)
+                  003f7963    00000003                   : sci.obj (.text:_SCI_enableRxInt)
+                  003f7966    00000003                   : sci.obj (.text:_SCI_enableTx)
+                  003f7969    00000003                   : sci.obj (.text:_SCI_enableTxInt)
+                  003f796c    00000002                   : pwm.obj (.text:_PWM_setPeriod)
+                  003f796e    00000002     rts2800_ml.lib : pre_init.c.obj (.text)
+                  003f7970    00000001                    : startup.c.obj (.text)
 
-.econst    0    003f78f8    00000100     
-                  003f78f8    00000100     driverlib.lib : pie.obj (.econst:_PIE_tableDebugInit)
+.econst    0    003f7972    00000104     
+                  003f7972    00000100     driverlib.lib : pie.obj (.econst:_PIE_tableDebugInit)
+                  003f7a72    00000004     rts2800_ml.lib : e_sqrtf.c.obj (.econst)
 
-.ebss.1    1    00000600    0000000b     UNINITIALIZED
+.ebss.1    1    00000600    0000000c     UNINITIALIZED
                   00000600    00000006     rts2800_ml.lib : exit.c.obj (.ebss)
                   00000606    00000002                    : _lock.c.obj (.ebss:__lock)
                   00000608    00000002                    : _lock.c.obj (.ebss:__unlock)
                   0000060a    00000001     driverlib.lib : cpu.obj (.ebss)
+                  0000060b    00000001     rts2800_ml.lib : errno.c.obj (.ebss)
 
-.ebss.2    1    00008000    000002be     UNINITIALIZED
-                  00008000    000002be     Example_2802xAdcSoc.obj (.ebss)
+.ebss.2    1    00008000    00000240     UNINITIALIZED
+                  00008000    00000240     Example_2802xAdcSoc.obj (.ebss)
 
 MODULE SUMMARY
 
        Module                        code   initialized data   uninitialized data
        ------                        ----   ----------------   ------------------
     ./
-       Example_2802xAdcSoc.obj       120    29                 702               
+       Example_2802xAdcSoc.obj       115    8                  576               
        Initialization.obj            457    0                  0                 
        Communication.obj             133    0                  0                 
     +--+-----------------------------+------+------------------+--------------------+
-       Total:                        710    29                 702               
+       Total:                        705    8                  576               
                                                                                  
     /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/ccs/Debug/driverlib.lib
        pie.obj                       90     256                0                 
@@ -248,6 +251,7 @@ MODULE SUMMARY
        Total:                        1150   256                1                 
                                                                                  
     /opt/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/lib/rts2800_ml.lib
+       fs_div28.asm.obj              131    0                  0                 
        fs_add28.asm.obj              120    0                  0                 
        fs_mpy28.asm.obj              90     0                  0                 
        boot28.asm.obj                84     0                  0                 
@@ -256,15 +260,16 @@ MODULE SUMMARY
        memcpy.c.obj                  29     0                  0                 
        args_main.c.obj               25     0                  0                 
        _lock.c.obj                   9      10                 4                 
-       fs_neg28.asm.obj              5      0                  0                 
+       errno.c.obj                   0      4                  1                 
+       e_sqrtf.c.obj                 0      4                  0                 
        pre_init.c.obj                2      0                  0                 
        startup.c.obj                 1      0                  0                 
     +--+-----------------------------+------+------------------+--------------------+
-       Total:                        442    24                 10                
+       Total:                        568    32                 11                
                                                                                  
        Stack:                        0      0                  512               
     +--+-----------------------------+------+------------------+--------------------+
-       Grand Total:                  2302   309                1225              
+       Grand Total:                  2423   296                1100              
 
 
 GLOBAL DATA SYMBOLS: SORTED BY DATA PAGE
@@ -279,33 +284,29 @@ address     data page           name
 00000606      18 (00000600)     __lock
 00000608      18 (00000600)     __unlock
 0000060a      18 (00000600)     _cpu
+0000060b      18 (00000600)     _errno
 
-00008000     200 (00008000)     _counter
-00008001     200 (00008000)     _is_time_to_send
-00008002     200 (00008000)     _packet
-00008004     200 (00008000)     _myPwm
-00008006     200 (00008000)     _myPie
-00008008     200 (00008000)     _mySci
-0000800a     200 (00008000)     _myPll
-0000800c     200 (00008000)     _myCpu
+00008000     200 (00008000)     _packet
+00008001     200 (00008000)     _counter
+00008002     200 (00008000)     _is_time_to_send
+00008004     200 (00008000)     _mySci
+00008006     200 (00008000)     _myPwm
+00008008     200 (00008000)     _myPll
+0000800a     200 (00008000)     _myCpu
+0000800c     200 (00008000)     _myWDog
 0000800e     200 (00008000)     _myClk
 00008010     200 (00008000)     _myAdc
 00008012     200 (00008000)     _myGpio
 00008014     200 (00008000)     _myFlash
-00008016     200 (00008000)     _myWDog
-0000802a     200 (00008000)     _filt
+00008016     200 (00008000)     _myPie
+00008018     200 (00008000)     _curr2
+00008022     200 (00008000)     _curr1
+0000802c     200 (00008000)     _volt2
+00008036     200 (00008000)     _volt1
 
-00008040     201 (00008040)     _curr1
+00008040     201 (00008040)     _rms_buf
 
-000080c0     203 (000080c0)     _volt2
-
-00008140     205 (00008140)     _volt1
-
-000081c0     207 (000081c0)     _curr2
-
-00008240     209 (00008240)     _filters
-
-003f78f8    fde3 (003f78c0)     _PIE_tableDebugInit
+003f7972    fde5 (003f7940)     _PIE_tableDebugInit
 
 
 GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
@@ -313,144 +314,144 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 page  address   name                            
 ----  -------   ----                            
 abs   ffffffff  .text                           
-0     003f746e  C$$EXIT                         
-0     003f7257  FS$$ADD                         
-0     003f7326  FS$$MPY                         
-0     003f789c  FS$$NEG                         
-0     003f7252  FS$$SUB                         
-0     003f7798  _ADCINT1_ISR                    
-0     003f779d  _ADCINT2_ISR                    
-0     003f77a2  _ADCINT3_ISR                    
-0     003f77a7  _ADCINT4_ISR                    
-0     003f77ac  _ADCINT5_ISR                    
-0     003f77b1  _ADCINT6_ISR                    
-0     003f77b6  _ADCINT7_ISR                    
-0     003f77bb  _ADCINT8_ISR                    
-0     003f77c0  _ADCINT9_ISR                    
-0     003f7680  _ADC_enable                     
-0     003f768a  _ADC_enableBandGap              
-0     003f7578  _ADC_enableInt                  
-0     003f7694  _ADC_enableRefBuffers           
-0     003f769e  _ADC_init                       
-0     003f76a8  _ADC_powerUp                    
-0     003f74e2  _ADC_setIntMode                 
-0     003f762d  _ADC_setIntPulseGenMode         
-0     003f7504  _ADC_setIntSrc                  
-0     003f758f  _ADC_setSampleMode              
-0     003f75f7  _ADC_setSocChanNumber           
-0     003f7609  _ADC_setSocSampleWindow         
-0     003f761b  _ADC_setSocTrigSrc              
-0     003f763e  _ADC_setVoltRefSrc              
-0     003f7762  _CLK_enableAdcClock             
-0     003f76e4  _CLK_enablePwmClock             
-0     003f76ed  _CLK_enableSciaClock            
-0     003f7769  _CLK_enableTbClockSync          
-0     003f771a  _CLK_init                       
-0     003f7770  _CLK_setOscSrc                  
-0     003f78c9  _CPU_clearIntFlags              
-0     003f78cc  _CPU_disableGlobalInts          
-0     003f78cf  _CPU_enableDebugInt             
-0     003f78d2  _CPU_enableGlobalInts           
-0     003f78a1  _CPU_enableInt                  
-0     003f78a5  _CPU_init                       
-0     003f77c5  _DATALOG_ISR                    
-0     003f76dd  _DSP28x_DisableInt              
-0     003f76e1  _DSP28x_RestoreInt              
+0     003f74f1  C$$EXIT                         
+0     003f72da  FS$$ADD                         
+0     003f7252  FS$$DIV                         
+0     003f73a9  FS$$MPY                         
+0     003f72d5  FS$$SUB                         
+0     003f7816  _ADCINT1_ISR                    
+0     003f781b  _ADCINT2_ISR                    
+0     003f7820  _ADCINT3_ISR                    
+0     003f7825  _ADCINT4_ISR                    
+0     003f782a  _ADCINT5_ISR                    
+0     003f782f  _ADCINT6_ISR                    
+0     003f7834  _ADCINT7_ISR                    
+0     003f7839  _ADCINT8_ISR                    
+0     003f783e  _ADCINT9_ISR                    
+0     003f76fe  _ADC_enable                     
+0     003f7708  _ADC_enableBandGap              
+0     003f75f6  _ADC_enableInt                  
+0     003f7712  _ADC_enableRefBuffers           
+0     003f771c  _ADC_init                       
+0     003f7726  _ADC_powerUp                    
+0     003f7565  _ADC_setIntMode                 
+0     003f76ab  _ADC_setIntPulseGenMode         
+0     003f7587  _ADC_setIntSrc                  
+0     003f760d  _ADC_setSampleMode              
+0     003f7675  _ADC_setSocChanNumber           
+0     003f7687  _ADC_setSocSampleWindow         
+0     003f7699  _ADC_setSocTrigSrc              
+0     003f76bc  _ADC_setVoltRefSrc              
+0     003f77e0  _CLK_enableAdcClock             
+0     003f7762  _CLK_enablePwmClock             
+0     003f776b  _CLK_enableSciaClock            
+0     003f77e7  _CLK_enableTbClockSync          
+0     003f7798  _CLK_init                       
+0     003f77ee  _CLK_setOscSrc                  
+0     003f7942  _CPU_clearIntFlags              
+0     003f7945  _CPU_disableGlobalInts          
+0     003f7948  _CPU_enableDebugInt             
+0     003f794b  _CPU_enableGlobalInts           
+0     003f791a  _CPU_enableInt                  
+0     003f791e  _CPU_init                       
+0     003f7843  _DATALOG_ISR                    
+0     003f775b  _DSP28x_DisableInt              
+0     003f775f  _DSP28x_RestoreInt              
 0     00000050  _DSP28x_usDelay                 
-0     003f77ca  _ECAP1_INT_ISR                  
-0     003f77cf  _EMPTY_ISR                      
-0     003f77d4  _EMUINT_ISR                     
-0     003f77d9  _EPWM1_INT_ISR                  
-0     003f77de  _EPWM1_TZINT_ISR                
-0     003f77e3  _EPWM2_INT_ISR                  
-0     003f77e8  _EPWM2_TZINT_ISR                
-0     003f77ed  _EPWM3_INT_ISR                  
-0     003f77f2  _EPWM3_TZINT_ISR                
-0     003f77f7  _EPWM4_INT_ISR                  
-0     003f77fc  _EPWM4_TZINT_ISR                
-0     003f7722  _FLASH_init                     
-0     003f772a  _GPIO_init                      
-0     003f741c  _GPIO_setDirection              
-0     003f75bb  _GPIO_setHigh                   
-0     003f75cf  _GPIO_setLow                    
-0     003f73d4  _GPIO_setMode                   
-0     003f7445  _GPIO_setPullUp                 
-0     003f7497  _GPIO_setQualification          
-0     003f7801  _I2CINT1A_ISR                   
-0     003f7806  _I2CINT2A_ISR                   
-0     003f780b  _ILLEGAL_ISR                    
-0     003f7810  _INT13_ISR                      
-0     003f7815  _INT14_ISR                      
-0     003f781a  _NMI_ISR                        
-0     003f781f  _PIE_RESERVED                   
-0     003f78d5  _PIE_disable                    
-0     003f764f  _PIE_disableAllInts             
-0     003f78d8  _PIE_enable                     
-0     003f75e3  _PIE_enableAdcInt               
-0     003f7824  _PIE_illegalIsr                 
-0     003f76b2  _PIE_init                       
-0     003f7671  _PIE_registerPieIntHandler      
-0     003f7660  _PIE_setDebugIntVectorTable     
-0     003f78f8  _PIE_tableDebugInit             
-0     003f78db  _PLL_getClkStatus               
-0     003f78de  _PLL_getLockStatus              
-0     003f7732  _PLL_init                       
-0     003f7777  _PLL_setDivider                 
-0     003f778c  _PLL_setMultiplier              
-0     003f75a6  _PLL_setup                      
-0     003f78a9  _PWM_enableSocAPulse            
-0     003f773a  _PWM_init                       
-0     003f78ad  _PWM_setCounterMode             
-0     003f78f3  _PWM_setPeriod                  
-0     003f76f6  _PWM_setSocAPeriod              
-0     003f76ff  _PWM_setSocAPulseSrc            
-0     003f7829  _RTOSINT_ISR                    
+0     003f7848  _ECAP1_INT_ISR                  
+0     003f784d  _EMPTY_ISR                      
+0     003f7852  _EMUINT_ISR                     
+0     003f7857  _EPWM1_INT_ISR                  
+0     003f785c  _EPWM1_TZINT_ISR                
+0     003f7861  _EPWM2_INT_ISR                  
+0     003f7866  _EPWM2_TZINT_ISR                
+0     003f786b  _EPWM3_INT_ISR                  
+0     003f7870  _EPWM3_TZINT_ISR                
+0     003f7875  _EPWM4_INT_ISR                  
+0     003f787a  _EPWM4_TZINT_ISR                
+0     003f77a0  _FLASH_init                     
+0     003f77a8  _GPIO_init                      
+0     003f749f  _GPIO_setDirection              
+0     003f7639  _GPIO_setHigh                   
+0     003f764d  _GPIO_setLow                    
+0     003f7457  _GPIO_setMode                   
+0     003f74c8  _GPIO_setPullUp                 
+0     003f751a  _GPIO_setQualification          
+0     003f787f  _I2CINT1A_ISR                   
+0     003f7884  _I2CINT2A_ISR                   
+0     003f7889  _ILLEGAL_ISR                    
+0     003f788e  _INT13_ISR                      
+0     003f7893  _INT14_ISR                      
+0     003f7898  _NMI_ISR                        
+0     003f789d  _PIE_RESERVED                   
+0     003f794e  _PIE_disable                    
+0     003f76cd  _PIE_disableAllInts             
+0     003f7951  _PIE_enable                     
+0     003f7661  _PIE_enableAdcInt               
+0     003f78a2  _PIE_illegalIsr                 
+0     003f7730  _PIE_init                       
+0     003f76ef  _PIE_registerPieIntHandler      
+0     003f76de  _PIE_setDebugIntVectorTable     
+0     003f7972  _PIE_tableDebugInit             
+0     003f7954  _PLL_getClkStatus               
+0     003f7957  _PLL_getLockStatus              
+0     003f77b0  _PLL_init                       
+0     003f77f5  _PLL_setDivider                 
+0     003f780a  _PLL_setMultiplier              
+0     003f7624  _PLL_setup                      
+0     003f7922  _PWM_enableSocAPulse            
+0     003f77b8  _PWM_init                       
+0     003f7926  _PWM_setCounterMode             
+0     003f796c  _PWM_setPeriod                  
+0     003f7774  _PWM_setSocAPeriod              
+0     003f777d  _PWM_setSocAPulseSrc            
+0     003f78a7  _RTOSINT_ISR                    
 abs   00000004  _RamfuncsLoadSize               
 0     003f7000  _RamfuncsLoadStart              
 0     00000050  _RamfuncsRunStart               
-0     003f782e  _SCIRXINTA_ISR                  
-0     003f7833  _SCITXINTA_ISR                  
-0     003f78b1  _SCI_clearRxFifoInt             
-0     003f78b5  _SCI_clearTxFifoInt             
-0     003f78e1  _SCI_disableParity              
-0     003f78e4  _SCI_enable                     
-0     003f78b9  _SCI_enableFifoEnh              
-0     003f78e7  _SCI_enableRx                   
-0     003f78ea  _SCI_enableRxInt                
-0     003f78ed  _SCI_enableTx                   
-0     003f78f0  _SCI_enableTxInt                
-0     003f78bd  _SCI_getTxFifoStatus            
-0     003f7742  _SCI_init                       
-0     003f7708  _SCI_putDataNonBlocking         
-0     003f76bc  _SCI_resetChannels              
-0     003f76c6  _SCI_resetRxFifo                
-0     003f76d0  _SCI_resetTxFifo                
-0     003f7792  _SCI_setBaudRate                
-0     003f78c1  _SCI_setCharLength              
-0     003f78c5  _SCI_setNumStopBits             
-0     003f777e  _SCI_setRxFifoIntLevel          
-0     003f7785  _SCI_setTxFifoIntLevel          
-0     003f7838  _SPIRXINTA_ISR                  
-0     003f783d  _SPITXINTA_ISR                  
-0     003f7842  _TINT0_ISR                      
-0     003f7847  _USER10_ISR                     
-0     003f784c  _USER11_ISR                     
-0     003f7851  _USER12_ISR                     
-0     003f7856  _USER1_ISR                      
-0     003f785b  _USER2_ISR                      
-0     003f7860  _USER3_ISR                      
-0     003f7865  _USER4_ISR                      
-0     003f786a  _USER5_ISR                      
-0     003f786f  _USER6_ISR                      
-0     003f7874  _USER7_ISR                      
-0     003f7879  _USER8_ISR                      
-0     003f787e  _USER9_ISR                      
-0     003f7883  _WAKEINT_ISR                    
-0     003f774a  _WDOG_disable                   
-0     003f7752  _WDOG_init                      
-0     003f7888  _XINT1_ISR                      
-0     003f788d  _XINT2_ISR                      
-0     003f7892  _XINT3_ISR                      
+0     003f78ac  _SCIRXINTA_ISR                  
+0     003f78b1  _SCITXINTA_ISR                  
+0     003f792a  _SCI_clearRxFifoInt             
+0     003f792e  _SCI_clearTxFifoInt             
+0     003f795a  _SCI_disableParity              
+0     003f795d  _SCI_enable                     
+0     003f7932  _SCI_enableFifoEnh              
+0     003f7960  _SCI_enableRx                   
+0     003f7963  _SCI_enableRxInt                
+0     003f7966  _SCI_enableTx                   
+0     003f7969  _SCI_enableTxInt                
+0     003f7936  _SCI_getTxFifoStatus            
+0     003f77c0  _SCI_init                       
+0     003f7786  _SCI_putDataNonBlocking         
+0     003f773a  _SCI_resetChannels              
+0     003f7744  _SCI_resetRxFifo                
+0     003f774e  _SCI_resetTxFifo                
+0     003f7810  _SCI_setBaudRate                
+0     003f793a  _SCI_setCharLength              
+0     003f793e  _SCI_setNumStopBits             
+0     003f77fc  _SCI_setRxFifoIntLevel          
+0     003f7803  _SCI_setTxFifoIntLevel          
+0     003f78b6  _SPIRXINTA_ISR                  
+0     003f78bb  _SPITXINTA_ISR                  
+0     003f78c0  _TINT0_ISR                      
+0     003f78c5  _USER10_ISR                     
+0     003f78ca  _USER11_ISR                     
+0     003f78cf  _USER12_ISR                     
+0     003f78d4  _USER1_ISR                      
+0     003f78d9  _USER2_ISR                      
+0     003f78de  _USER3_ISR                      
+0     003f78e3  _USER4_ISR                      
+0     003f78e8  _USER5_ISR                      
+0     003f78ed  _USER6_ISR                      
+0     003f78f2  _USER7_ISR                      
+0     003f78f7  _USER8_ISR                      
+0     003f78fc  _USER9_ISR                      
+0     003f7901  _WAKEINT_ISR                    
+0     003f77c8  _WDOG_disable                   
+0     003f77d0  _WDOG_init                      
+0     003f7906  _XINT1_ISR                      
+0     003f790b  _XINT2_ISR                      
+0     003f7910  _XINT3_ISR                      
 1     00000600  __STACK_END                     
 abs   00000200  __STACK_SIZE                    
 1     00000602  ___TI_cleanup_ptr               
@@ -461,55 +462,55 @@ abs   ffffffff  ___TI_prof_data_size
 abs   ffffffff  ___TI_prof_data_start           
 abs   ffffffff  ___binit__                      
 abs   ffffffff  ___c_args__                     
-0     003f79f8  ___cinit__                      
+0     003f7a76  ___cinit__                      
 abs   ffffffff  ___etext__                      
 abs   ffffffff  ___pinit__                      
 abs   ffffffff  ___text__                       
-0     003f755f  __args_main                     
+0     003f75c6  __args_main                     
 1     00000606  __lock                          
-0     003f7719  __nop                           
-0     003f7715  __register_lock                 
-0     003f7711  __register_unlock               
+0     003f7797  __nop                           
+0     003f7793  __register_lock                 
+0     003f778f  __register_unlock               
 1     00000400  __stack                         
-0     003f78f7  __system_post_cinit             
-0     003f78f5  __system_pre_init               
+0     003f7970  __system_post_cinit             
+0     003f796e  __system_pre_init               
 1     00000608  __unlock                        
-0     003f746e  _abort                          
-0     003f72ca  _adc_isr                        
-0     003f7380  _c_int00                        
-0     003f74be  _copy_in                        
-1     00008000  _counter                        
+0     003f74f1  _abort                          
+0     003f734d  _adc_isr                        
+0     003f7403  _c_int00                        
+0     003f7541  _copy_in                        
+1     00008001  _counter                        
 1     0000060a  _cpu                            
-1     00008040  _curr1                          
-1     000081c0  _curr2                          
-0     003f7470  _exit                           
-1     0000802a  _filt                           
-1     00008240  _filters                        
+1     00008022  _curr1                          
+1     00008018  _curr2                          
+1     0000060b  _errno                          
+0     003f74f3  _exit                           
 0     003f7010  _initialize                     
-1     00008001  _is_time_to_send                
-0     003f754e  _main                           
-0     003f7526  _memcpy                         
+1     00008002  _is_time_to_send                
+0     003f75ea  _main                           
+0     003f75a9  _memcpy                         
 1     00008010  _myAdc                          
 1     0000800e  _myClk                          
-1     0000800c  _myCpu                          
+1     0000800a  _myCpu                          
 1     00008014  _myFlash                        
 1     00008012  _myGpio                         
-1     00008006  _myPie                          
-1     0000800a  _myPll                          
-1     00008004  _myPwm                          
-1     00008008  _mySci                          
-1     00008016  _myWDog                         
-1     00008002  _packet                         
-0     003f7897  _rsvd_ISR                       
+1     00008016  _myPie                          
+1     00008008  _myPll                          
+1     00008006  _myPwm                          
+1     00008004  _mySci                          
+1     0000800c  _myWDog                         
+1     00008000  _packet                         
+1     00008040  _rms_buf                        
+0     003f7915  _rsvd_ISR                       
 0     003f71cd  _scia_echoback_init             
 0     003f7227  _scia_fifo_init                 
 0     003f7214  _scia_msg                       
 0     003f7203  _scia_xmit                      
-0     003f76da  _setDBGIER                      
-1     00008140  _volt1                          
-1     000080c0  _volt2                          
+0     003f7758  _setDBGIER                      
+1     00008036  _volt1                          
+1     0000802c  _volt2                          
 abs   ffffffff  binit                           
-0     003f79f8  cinit                           
+0     003f7a76  cinit                           
 0     003f7ff6  code_start                      
 abs   ffffffff  etext                           
 abs   ffffffff  pinit                           
@@ -527,157 +528,157 @@ page  address   name
 0     003f7203  _scia_xmit                      
 0     003f7214  _scia_msg                       
 0     003f7227  _scia_fifo_init                 
-0     003f7252  FS$$SUB                         
-0     003f7257  FS$$ADD                         
-0     003f72ca  _adc_isr                        
-0     003f7326  FS$$MPY                         
-0     003f7380  _c_int00                        
-0     003f73d4  _GPIO_setMode                   
-0     003f741c  _GPIO_setDirection              
-0     003f7445  _GPIO_setPullUp                 
-0     003f746e  C$$EXIT                         
-0     003f746e  _abort                          
-0     003f7470  _exit                           
-0     003f7497  _GPIO_setQualification          
-0     003f74be  _copy_in                        
-0     003f74e2  _ADC_setIntMode                 
-0     003f7504  _ADC_setIntSrc                  
-0     003f7526  _memcpy                         
-0     003f754e  _main                           
-0     003f755f  __args_main                     
-0     003f7578  _ADC_enableInt                  
-0     003f758f  _ADC_setSampleMode              
-0     003f75a6  _PLL_setup                      
-0     003f75bb  _GPIO_setHigh                   
-0     003f75cf  _GPIO_setLow                    
-0     003f75e3  _PIE_enableAdcInt               
-0     003f75f7  _ADC_setSocChanNumber           
-0     003f7609  _ADC_setSocSampleWindow         
-0     003f761b  _ADC_setSocTrigSrc              
-0     003f762d  _ADC_setIntPulseGenMode         
-0     003f763e  _ADC_setVoltRefSrc              
-0     003f764f  _PIE_disableAllInts             
-0     003f7660  _PIE_setDebugIntVectorTable     
-0     003f7671  _PIE_registerPieIntHandler      
-0     003f7680  _ADC_enable                     
-0     003f768a  _ADC_enableBandGap              
-0     003f7694  _ADC_enableRefBuffers           
-0     003f769e  _ADC_init                       
-0     003f76a8  _ADC_powerUp                    
-0     003f76b2  _PIE_init                       
-0     003f76bc  _SCI_resetChannels              
-0     003f76c6  _SCI_resetRxFifo                
-0     003f76d0  _SCI_resetTxFifo                
-0     003f76da  _setDBGIER                      
-0     003f76dd  _DSP28x_DisableInt              
-0     003f76e1  _DSP28x_RestoreInt              
-0     003f76e4  _CLK_enablePwmClock             
-0     003f76ed  _CLK_enableSciaClock            
-0     003f76f6  _PWM_setSocAPeriod              
-0     003f76ff  _PWM_setSocAPulseSrc            
-0     003f7708  _SCI_putDataNonBlocking         
-0     003f7711  __register_unlock               
-0     003f7715  __register_lock                 
-0     003f7719  __nop                           
-0     003f771a  _CLK_init                       
-0     003f7722  _FLASH_init                     
-0     003f772a  _GPIO_init                      
-0     003f7732  _PLL_init                       
-0     003f773a  _PWM_init                       
-0     003f7742  _SCI_init                       
-0     003f774a  _WDOG_disable                   
-0     003f7752  _WDOG_init                      
-0     003f7762  _CLK_enableAdcClock             
-0     003f7769  _CLK_enableTbClockSync          
-0     003f7770  _CLK_setOscSrc                  
-0     003f7777  _PLL_setDivider                 
-0     003f777e  _SCI_setRxFifoIntLevel          
-0     003f7785  _SCI_setTxFifoIntLevel          
-0     003f778c  _PLL_setMultiplier              
-0     003f7792  _SCI_setBaudRate                
-0     003f7798  _ADCINT1_ISR                    
-0     003f779d  _ADCINT2_ISR                    
-0     003f77a2  _ADCINT3_ISR                    
-0     003f77a7  _ADCINT4_ISR                    
-0     003f77ac  _ADCINT5_ISR                    
-0     003f77b1  _ADCINT6_ISR                    
-0     003f77b6  _ADCINT7_ISR                    
-0     003f77bb  _ADCINT8_ISR                    
-0     003f77c0  _ADCINT9_ISR                    
-0     003f77c5  _DATALOG_ISR                    
-0     003f77ca  _ECAP1_INT_ISR                  
-0     003f77cf  _EMPTY_ISR                      
-0     003f77d4  _EMUINT_ISR                     
-0     003f77d9  _EPWM1_INT_ISR                  
-0     003f77de  _EPWM1_TZINT_ISR                
-0     003f77e3  _EPWM2_INT_ISR                  
-0     003f77e8  _EPWM2_TZINT_ISR                
-0     003f77ed  _EPWM3_INT_ISR                  
-0     003f77f2  _EPWM3_TZINT_ISR                
-0     003f77f7  _EPWM4_INT_ISR                  
-0     003f77fc  _EPWM4_TZINT_ISR                
-0     003f7801  _I2CINT1A_ISR                   
-0     003f7806  _I2CINT2A_ISR                   
-0     003f780b  _ILLEGAL_ISR                    
-0     003f7810  _INT13_ISR                      
-0     003f7815  _INT14_ISR                      
-0     003f781a  _NMI_ISR                        
-0     003f781f  _PIE_RESERVED                   
-0     003f7824  _PIE_illegalIsr                 
-0     003f7829  _RTOSINT_ISR                    
-0     003f782e  _SCIRXINTA_ISR                  
-0     003f7833  _SCITXINTA_ISR                  
-0     003f7838  _SPIRXINTA_ISR                  
-0     003f783d  _SPITXINTA_ISR                  
-0     003f7842  _TINT0_ISR                      
-0     003f7847  _USER10_ISR                     
-0     003f784c  _USER11_ISR                     
-0     003f7851  _USER12_ISR                     
-0     003f7856  _USER1_ISR                      
-0     003f785b  _USER2_ISR                      
-0     003f7860  _USER3_ISR                      
-0     003f7865  _USER4_ISR                      
-0     003f786a  _USER5_ISR                      
-0     003f786f  _USER6_ISR                      
-0     003f7874  _USER7_ISR                      
-0     003f7879  _USER8_ISR                      
-0     003f787e  _USER9_ISR                      
-0     003f7883  _WAKEINT_ISR                    
-0     003f7888  _XINT1_ISR                      
-0     003f788d  _XINT2_ISR                      
-0     003f7892  _XINT3_ISR                      
-0     003f7897  _rsvd_ISR                       
-0     003f789c  FS$$NEG                         
-0     003f78a1  _CPU_enableInt                  
-0     003f78a5  _CPU_init                       
-0     003f78a9  _PWM_enableSocAPulse            
-0     003f78ad  _PWM_setCounterMode             
-0     003f78b1  _SCI_clearRxFifoInt             
-0     003f78b5  _SCI_clearTxFifoInt             
-0     003f78b9  _SCI_enableFifoEnh              
-0     003f78bd  _SCI_getTxFifoStatus            
-0     003f78c1  _SCI_setCharLength              
-0     003f78c5  _SCI_setNumStopBits             
-0     003f78c9  _CPU_clearIntFlags              
-0     003f78cc  _CPU_disableGlobalInts          
-0     003f78cf  _CPU_enableDebugInt             
-0     003f78d2  _CPU_enableGlobalInts           
-0     003f78d5  _PIE_disable                    
-0     003f78d8  _PIE_enable                     
-0     003f78db  _PLL_getClkStatus               
-0     003f78de  _PLL_getLockStatus              
-0     003f78e1  _SCI_disableParity              
-0     003f78e4  _SCI_enable                     
-0     003f78e7  _SCI_enableRx                   
-0     003f78ea  _SCI_enableRxInt                
-0     003f78ed  _SCI_enableTx                   
-0     003f78f0  _SCI_enableTxInt                
-0     003f78f3  _PWM_setPeriod                  
-0     003f78f5  __system_pre_init               
-0     003f78f7  __system_post_cinit             
-0     003f78f8  _PIE_tableDebugInit             
-0     003f79f8  ___cinit__                      
-0     003f79f8  cinit                           
+0     003f7252  FS$$DIV                         
+0     003f72d5  FS$$SUB                         
+0     003f72da  FS$$ADD                         
+0     003f734d  _adc_isr                        
+0     003f73a9  FS$$MPY                         
+0     003f7403  _c_int00                        
+0     003f7457  _GPIO_setMode                   
+0     003f749f  _GPIO_setDirection              
+0     003f74c8  _GPIO_setPullUp                 
+0     003f74f1  C$$EXIT                         
+0     003f74f1  _abort                          
+0     003f74f3  _exit                           
+0     003f751a  _GPIO_setQualification          
+0     003f7541  _copy_in                        
+0     003f7565  _ADC_setIntMode                 
+0     003f7587  _ADC_setIntSrc                  
+0     003f75a9  _memcpy                         
+0     003f75c6  __args_main                     
+0     003f75ea  _main                           
+0     003f75f6  _ADC_enableInt                  
+0     003f760d  _ADC_setSampleMode              
+0     003f7624  _PLL_setup                      
+0     003f7639  _GPIO_setHigh                   
+0     003f764d  _GPIO_setLow                    
+0     003f7661  _PIE_enableAdcInt               
+0     003f7675  _ADC_setSocChanNumber           
+0     003f7687  _ADC_setSocSampleWindow         
+0     003f7699  _ADC_setSocTrigSrc              
+0     003f76ab  _ADC_setIntPulseGenMode         
+0     003f76bc  _ADC_setVoltRefSrc              
+0     003f76cd  _PIE_disableAllInts             
+0     003f76de  _PIE_setDebugIntVectorTable     
+0     003f76ef  _PIE_registerPieIntHandler      
+0     003f76fe  _ADC_enable                     
+0     003f7708  _ADC_enableBandGap              
+0     003f7712  _ADC_enableRefBuffers           
+0     003f771c  _ADC_init                       
+0     003f7726  _ADC_powerUp                    
+0     003f7730  _PIE_init                       
+0     003f773a  _SCI_resetChannels              
+0     003f7744  _SCI_resetRxFifo                
+0     003f774e  _SCI_resetTxFifo                
+0     003f7758  _setDBGIER                      
+0     003f775b  _DSP28x_DisableInt              
+0     003f775f  _DSP28x_RestoreInt              
+0     003f7762  _CLK_enablePwmClock             
+0     003f776b  _CLK_enableSciaClock            
+0     003f7774  _PWM_setSocAPeriod              
+0     003f777d  _PWM_setSocAPulseSrc            
+0     003f7786  _SCI_putDataNonBlocking         
+0     003f778f  __register_unlock               
+0     003f7793  __register_lock                 
+0     003f7797  __nop                           
+0     003f7798  _CLK_init                       
+0     003f77a0  _FLASH_init                     
+0     003f77a8  _GPIO_init                      
+0     003f77b0  _PLL_init                       
+0     003f77b8  _PWM_init                       
+0     003f77c0  _SCI_init                       
+0     003f77c8  _WDOG_disable                   
+0     003f77d0  _WDOG_init                      
+0     003f77e0  _CLK_enableAdcClock             
+0     003f77e7  _CLK_enableTbClockSync          
+0     003f77ee  _CLK_setOscSrc                  
+0     003f77f5  _PLL_setDivider                 
+0     003f77fc  _SCI_setRxFifoIntLevel          
+0     003f7803  _SCI_setTxFifoIntLevel          
+0     003f780a  _PLL_setMultiplier              
+0     003f7810  _SCI_setBaudRate                
+0     003f7816  _ADCINT1_ISR                    
+0     003f781b  _ADCINT2_ISR                    
+0     003f7820  _ADCINT3_ISR                    
+0     003f7825  _ADCINT4_ISR                    
+0     003f782a  _ADCINT5_ISR                    
+0     003f782f  _ADCINT6_ISR                    
+0     003f7834  _ADCINT7_ISR                    
+0     003f7839  _ADCINT8_ISR                    
+0     003f783e  _ADCINT9_ISR                    
+0     003f7843  _DATALOG_ISR                    
+0     003f7848  _ECAP1_INT_ISR                  
+0     003f784d  _EMPTY_ISR                      
+0     003f7852  _EMUINT_ISR                     
+0     003f7857  _EPWM1_INT_ISR                  
+0     003f785c  _EPWM1_TZINT_ISR                
+0     003f7861  _EPWM2_INT_ISR                  
+0     003f7866  _EPWM2_TZINT_ISR                
+0     003f786b  _EPWM3_INT_ISR                  
+0     003f7870  _EPWM3_TZINT_ISR                
+0     003f7875  _EPWM4_INT_ISR                  
+0     003f787a  _EPWM4_TZINT_ISR                
+0     003f787f  _I2CINT1A_ISR                   
+0     003f7884  _I2CINT2A_ISR                   
+0     003f7889  _ILLEGAL_ISR                    
+0     003f788e  _INT13_ISR                      
+0     003f7893  _INT14_ISR                      
+0     003f7898  _NMI_ISR                        
+0     003f789d  _PIE_RESERVED                   
+0     003f78a2  _PIE_illegalIsr                 
+0     003f78a7  _RTOSINT_ISR                    
+0     003f78ac  _SCIRXINTA_ISR                  
+0     003f78b1  _SCITXINTA_ISR                  
+0     003f78b6  _SPIRXINTA_ISR                  
+0     003f78bb  _SPITXINTA_ISR                  
+0     003f78c0  _TINT0_ISR                      
+0     003f78c5  _USER10_ISR                     
+0     003f78ca  _USER11_ISR                     
+0     003f78cf  _USER12_ISR                     
+0     003f78d4  _USER1_ISR                      
+0     003f78d9  _USER2_ISR                      
+0     003f78de  _USER3_ISR                      
+0     003f78e3  _USER4_ISR                      
+0     003f78e8  _USER5_ISR                      
+0     003f78ed  _USER6_ISR                      
+0     003f78f2  _USER7_ISR                      
+0     003f78f7  _USER8_ISR                      
+0     003f78fc  _USER9_ISR                      
+0     003f7901  _WAKEINT_ISR                    
+0     003f7906  _XINT1_ISR                      
+0     003f790b  _XINT2_ISR                      
+0     003f7910  _XINT3_ISR                      
+0     003f7915  _rsvd_ISR                       
+0     003f791a  _CPU_enableInt                  
+0     003f791e  _CPU_init                       
+0     003f7922  _PWM_enableSocAPulse            
+0     003f7926  _PWM_setCounterMode             
+0     003f792a  _SCI_clearRxFifoInt             
+0     003f792e  _SCI_clearTxFifoInt             
+0     003f7932  _SCI_enableFifoEnh              
+0     003f7936  _SCI_getTxFifoStatus            
+0     003f793a  _SCI_setCharLength              
+0     003f793e  _SCI_setNumStopBits             
+0     003f7942  _CPU_clearIntFlags              
+0     003f7945  _CPU_disableGlobalInts          
+0     003f7948  _CPU_enableDebugInt             
+0     003f794b  _CPU_enableGlobalInts           
+0     003f794e  _PIE_disable                    
+0     003f7951  _PIE_enable                     
+0     003f7954  _PLL_getClkStatus               
+0     003f7957  _PLL_getLockStatus              
+0     003f795a  _SCI_disableParity              
+0     003f795d  _SCI_enable                     
+0     003f7960  _SCI_enableRx                   
+0     003f7963  _SCI_enableRxInt                
+0     003f7966  _SCI_enableTx                   
+0     003f7969  _SCI_enableTxInt                
+0     003f796c  _PWM_setPeriod                  
+0     003f796e  __system_pre_init               
+0     003f7970  __system_post_cinit             
+0     003f7972  _PIE_tableDebugInit             
+0     003f7a76  ___cinit__                      
+0     003f7a76  cinit                           
 0     003f7ff6  code_start                      
 1     00000400  __stack                         
 1     00000600  __STACK_END                     
@@ -687,25 +688,25 @@ page  address   name
 1     00000606  __lock                          
 1     00000608  __unlock                        
 1     0000060a  _cpu                            
-1     00008000  _counter                        
-1     00008001  _is_time_to_send                
-1     00008002  _packet                         
-1     00008004  _myPwm                          
-1     00008006  _myPie                          
-1     00008008  _mySci                          
-1     0000800a  _myPll                          
-1     0000800c  _myCpu                          
+1     0000060b  _errno                          
+1     00008000  _packet                         
+1     00008001  _counter                        
+1     00008002  _is_time_to_send                
+1     00008004  _mySci                          
+1     00008006  _myPwm                          
+1     00008008  _myPll                          
+1     0000800a  _myCpu                          
+1     0000800c  _myWDog                         
 1     0000800e  _myClk                          
 1     00008010  _myAdc                          
 1     00008012  _myGpio                         
 1     00008014  _myFlash                        
-1     00008016  _myWDog                         
-1     0000802a  _filt                           
-1     00008040  _curr1                          
-1     000080c0  _volt2                          
-1     00008140  _volt1                          
-1     000081c0  _curr2                          
-1     00008240  _filters                        
+1     00008016  _myPie                          
+1     00008018  _curr2                          
+1     00008022  _curr1                          
+1     0000802c  _volt2                          
+1     00008036  _volt1                          
+1     00008040  _rms_buf                        
 abs   00000004  _RamfuncsLoadSize               
 abs   00000200  __STACK_SIZE                    
 abs   ffffffff  .text                           

@@ -44,6 +44,7 @@ Example_2802xAdcSoc.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_su
 Example_2802xAdcSoc.obj: ../DigitalFilters.h
 Example_2802xAdcSoc.obj: ../Initialization.h
 Example_2802xAdcSoc.obj: ../Communication.h
+Example_2802xAdcSoc.obj: ../Rms.h
 
 ../Example_2802xAdcSoc.c: 
 /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/DSP28x_Project.h: 
@@ -89,3 +90,4 @@ Example_2802xAdcSoc.obj: ../Communication.h
 ../DigitalFilters.h: 
 ../Initialization.h: 
 ../Communication.h: 
+../Rms.h: 

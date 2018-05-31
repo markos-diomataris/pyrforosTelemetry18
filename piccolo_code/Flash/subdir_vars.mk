@@ -10,36 +10,42 @@ C_SRCS += \
 ../Communication.c \
 ../DigitalFilters.c \
 ../Example_2802xAdcSoc.c \
-../Initialization.c 
+../Initialization.c \
+../Rms.c 
 
 C_DEPS += \
 ./Communication.d \
 ./DigitalFilters.d \
 ./Example_2802xAdcSoc.d \
-./Initialization.d 
+./Initialization.d \
+./Rms.d 
 
 OBJS += \
 ./Communication.obj \
 ./DigitalFilters.obj \
 ./Example_2802xAdcSoc.obj \
-./Initialization.obj 
+./Initialization.obj \
+./Rms.obj 
 
 OBJS__QUOTED += \
 "Communication.obj" \
 "DigitalFilters.obj" \
 "Example_2802xAdcSoc.obj" \
-"Initialization.obj" 
+"Initialization.obj" \
+"Rms.obj" 
 
 C_DEPS__QUOTED += \
 "Communication.d" \
 "DigitalFilters.d" \
 "Example_2802xAdcSoc.d" \
-"Initialization.d" 
+"Initialization.d" \
+"Rms.d" 
 
 C_SRCS__QUOTED += \
 "../Communication.c" \
 "../DigitalFilters.c" \
 "../Example_2802xAdcSoc.c" \
-"../Initialization.c" 
+"../Initialization.c" \
+"../Rms.c" 
 
 

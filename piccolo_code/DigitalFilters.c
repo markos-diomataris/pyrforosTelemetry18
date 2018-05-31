@@ -11,7 +11,7 @@
 
 
 /*
- *       SECOND ORDER DIRECT FORM II
+ *       SECOND ORDER DIRECT FORM II KERNEL
  *                  w[n]
  *  x[n]--->+---->---.----b0---+----->y[n]
  *          ^        |         ^
@@ -28,21 +28,17 @@
  */
 
 
-double step_filter(struct Second_order_filter * filter, double input){
-    double u1,u2,u3;
-    u2 = -filter->a[1]*(filter->buf[0])
-         - filter->a[2]*(filter->buf[1]);
+SIGNAL_TYPE stepNotch(struct NotchFilter_DF2 * f,COEFF_TYPE input){
+    uint8_t i;
+    uint8_t S = f->stages;
+    SIGNAL_TYPE temp=input;
+    for(i=0;i<S;i++){
+        f->w[i][0] = temp + f->a[i][1]*f->w[i][1] + f->a[i][2]*f->w[i][2];
+        temp = f->g[i]*(f->b[i][0]*f->w[i][0] + f->b[i][1]*f->w[i][1] + f->b[i][2]*f->w[i][2]);
+        f->w[i][1] = f->w[i][0];
+        f->w[i][2] = f->w[i][1];
+    }
 
-    u1 = input + u2;
 
-    u3 = filter->b[1]*(filter->buf[0])
-         +filter->b[2]*(filter->buf[1]);
-
-    filter->buf[1]=filter->buf[0];
-    filter->buf[0]=u2;
-
-    return filter->gain*(u1*(filter->b[0]) + u3);
+    return temp;
 }
-
-
-

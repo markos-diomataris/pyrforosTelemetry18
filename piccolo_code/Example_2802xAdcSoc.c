@@ -15,7 +15,7 @@
 #include "DigitalFilters.h"
 #include "Initialization.h"
 #include "Communication.h"
-
+#include "Rms.h"
 //
 // Function Prototypes
 //
@@ -24,13 +24,14 @@ __interrupt void adc_isr(void);
 /*
  * Globals
  */
-struct Second_order_filter filters[7];
-
 uint8_t counter=0;
 volatile int is_time_to_send = 0;
-uint16_t packet,curr1[100],curr2[100],volt1[100],volt2[100];
+volatile SIGNAL_TYPE rms_buf[256];
+uint16_t packet,curr1[10],curr2[10],volt1[10],volt2[10];
 
-//Handler pointers
+/*
+ * Handler pointers
+ */
 ADC_Handle myAdc;
 CLK_Handle myClk;
 FLASH_Handle myFlash;
@@ -43,13 +44,12 @@ PLL_Handle myPll;
 WDOG_Handle myWDog;
 
 
-extern struct Second_order_filter filter_0;
-
-struct Second_order_filter *filt[10];
-
+/*
+ * externals
+ */
+//extern SIGNAL_TYPE rms_buf[RMS_BUF_SIZE];
 
 void main(void){
-    filt[0] = &filter_0;
 
 
     initialize();
@@ -69,8 +69,10 @@ __interrupt void adc_isr(void){
     volt2[counter++] = adc->ADCRESULT[3];
     //add badass code here//
 
+
+
     //
-    if(counter==100)
+    if(counter==10)
         counter=0;
     if(is_time_to_send == 1){
         GPIO_setHigh(myGpio, GPIO_Number_34);   //trigger interrupt to arduino
