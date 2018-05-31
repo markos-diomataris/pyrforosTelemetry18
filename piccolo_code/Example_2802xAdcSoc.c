@@ -26,8 +26,8 @@ __interrupt void adc_isr(void);
  */
 uint8_t counter=0;
 volatile int is_time_to_send = 0;
-volatile SIGNAL_TYPE rms_buf[256];
-uint16_t packet,curr1[10],curr2[10],volt1[10],volt2[10];
+SIGNAL_TYPE *rms_buf_ptr;
+uint16_t packet,curr1[100],curr2[100],volt1[100],volt2[100];
 
 /*
  * Handler pointers
@@ -50,7 +50,8 @@ WDOG_Handle myWDog;
 //extern SIGNAL_TYPE rms_buf[RMS_BUF_SIZE];
 
 void main(void){
-
+    SIGNAL_TYPE _rms_buf[RMS_BUF_SIZE];
+    rms_buf_ptr = _rms_buf;
 
     initialize();
     for(;;){

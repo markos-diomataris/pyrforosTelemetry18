@@ -38,7 +38,5 @@ SIGNAL_TYPE stepNotch(struct NotchFilter_DF2 * f,COEFF_TYPE input){
         f->w[i][1] = f->w[i][0];
         f->w[i][2] = f->w[i][1];
     }
-
-
     return temp;
 }
