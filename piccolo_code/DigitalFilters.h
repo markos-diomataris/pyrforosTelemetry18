@@ -26,6 +26,8 @@ typedef double SIGNAL_TYPE; //input signal type (after casted from ADC)
  * -contains all the coefficients
  * -arbitrary order
  */
+
+
 struct NotchFilter_DF2 {
     uint8_t stages;
 
@@ -52,39 +54,10 @@ static struct NotchFilter_DF2 NotchC1 = {
           {3,4,3}},
     .b = {{1,2,3},
           {3,4,3}},
-    .g = 0.0023043,
+    .g = 1.1,
     .w={0}
 };
 
-//notch filter for current 1
-static struct NotchFilter_DF2 NotchC2 = {
-    .a = {{1,2,3},
-          {3,4,3}},
-    .b = {{1,2,3},
-          {3,4,3}},
-    .g = 0.0023043,
-    .w={0}
-};
-
-//notch filter for current 1
-static struct NotchFilter_DF2 NotchV1 = {
-    .a = {{1,2,3},
-          {3,4,3}},
-    .b = {{1,2,3},
-          {3,4,3}},
-    .g = 0.0023043,
-    .w={0}
-};
-
-//notch filter for current 1
-static struct NotchFilter_DF2 NotchV2 = {
-    .a = {{1,2,3},
-          {3,4,3}},
-    .b = {{1,2,3},
-          {3,4,3}},
-    .g = 0.0023043,
-    .w={0}
-};
 #endif
 
 

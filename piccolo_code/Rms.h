@@ -11,7 +11,7 @@
 #include "DSP28x_Project.h" //has types
 #include "DigitalFilters.h"
 
-#define RMS_BUF_SIZE 256
+#define RMS_BUF_SIZE 150
 
 
 /*
