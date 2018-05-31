@@ -16,9 +16,14 @@
 #include "Initialization.h"
 #include "Communication.h"
 #include "Rms.h"
-//
-// Function Prototypes
-//
+
+/*
+ * Defines
+ */
+#define OFFSET 0x00FF
+/*
+ * Function prototypes
+ */
 __interrupt void adc_isr(void);
 
 /*
