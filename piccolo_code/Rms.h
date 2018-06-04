@@ -11,8 +11,12 @@
 #include "DSP28x_Project.h" //has types
 #include "DigitalFilters.h"
 
-#define RMS_BUF_SIZE 150
+#define RMS_BUF_SIZE 100
 
+/*
+ * Union of RMS Caltulation state
+ */
+enum RMS_STATE {BEING_CALCED=0,ACCUMULATING};
 
 /*
  * calculate rms for a buffer

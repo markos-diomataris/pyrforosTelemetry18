@@ -47,7 +47,7 @@ void initialize(){
         //
         // Setup the PLL for x10 /2 which will yield 50Mhz = 10Mhz * 10 / 2
         //
-        PLL_setup(myPll, PLL_Multiplier_12, PLL_DivideSelect_ClkIn_by_2);
+        PLL_setup(myPll, PLL_Multiplier_12, PLL_DivideSelect_ClkIn_by_1);
         //
         // Disable the PIE and all interrupts
         //
@@ -158,7 +158,7 @@ void initialize(){
         //
         PWM_setSocAPeriod(myPwm, PWM_SocPeriod_FirstEvent);
         PWM_setCmpA(myPwm, 0x00FF);                      // Set compare A value
-        PWM_setPeriod(myPwm, 0x1770);                    // Set period for ePWM1
+        PWM_setPeriod(myPwm, 0x2EE0);                    // Set period for ePWM1
         PWM_setCounterMode(myPwm, PWM_CounterMode_Up);   // count up and start
         CLK_enableTbClockSync(myClk);
         //setup gpio for TX RX
