@@ -41,6 +41,8 @@ Example_2802xAdcSoc.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_su
 Example_2802xAdcSoc.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/pll.h
 Example_2802xAdcSoc.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/wdog.h
 Example_2802xAdcSoc.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/sci.h
+Example_2802xAdcSoc.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/libraries/math/IQmath/c28/include/IQmathLib.h
+Example_2802xAdcSoc.obj: /opt/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/include/limits.h
 Example_2802xAdcSoc.obj: ../DigitalFilters.h
 Example_2802xAdcSoc.obj: ../Initialization.h
 Example_2802xAdcSoc.obj: ../Communication.h
@@ -87,6 +89,8 @@ Example_2802xAdcSoc.obj: ../Rms.h
 /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/pll.h: 
 /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/wdog.h: 
 /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/sci.h: 
+/home/markos/ti/C2000Ware_1_00_03_00_Software/libraries/math/IQmath/c28/include/IQmathLib.h: 
+/opt/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/include/limits.h: 
 ../DigitalFilters.h: 
 ../Initialization.h: 
 ../Communication.h: 

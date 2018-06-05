@@ -32,6 +32,8 @@ DigitalFilters.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support
 DigitalFilters.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/f2802x_epwm_defines.h
 DigitalFilters.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/f2802x_i2c_defines.h
 DigitalFilters.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/f2802x_defaultisr.h
+DigitalFilters.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/libraries/math/IQmath/c28/include/IQmathLib.h
+DigitalFilters.obj: /opt/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/include/limits.h
 
 ../DigitalFilters.c: 
 ../DigitalFilters.h: 
@@ -65,3 +67,5 @@ DigitalFilters.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support
 /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/f2802x_epwm_defines.h: 
 /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/f2802x_i2c_defines.h: 
 /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/common/include/f2802x_defaultisr.h: 
+/home/markos/ti/C2000Ware_1_00_03_00_Software/libraries/math/IQmath/c28/include/IQmathLib.h: 
+/opt/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/include/limits.h: 
