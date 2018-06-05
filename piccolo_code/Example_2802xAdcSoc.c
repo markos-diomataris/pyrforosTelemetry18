@@ -13,7 +13,6 @@
 #include "common/include/sci.h"
 #include "IQmathLib.h"
 
-
 #include "DigitalFilters.h"
 #include "Initialization.h"
 #include "Communication.h"
@@ -35,12 +34,12 @@ __interrupt void adc_isr(void);
 uint8_t counter=0;
 volatile uint8_t is_time_to_send = 0;
 volatile uint8_t is_time_to_rms =0;
-SIGNAL_TYPE *rms_buf_ptr;
+int16_t *rms_buf_ptr;
 uint16_t rms_pos=0;
 uint16_t packet;
 int16_t curr1[100],curr2[100],volt1[100],volt2[100];
 float rms_value;
-int rms_plot;
+int16_t rms_plot;
 /*
  * enums
  */
@@ -69,7 +68,7 @@ extern struct NotchFilter_DF2 NotchC1;
  * Main
  */
 void main(void){
-    SIGNAL_TYPE rms_array[RMS_BUF_SIZE];
+    int16_t rms_array[RMS_BUF_SIZE];
     rms_buf_ptr = rms_array;
 
     initialize();
@@ -78,7 +77,8 @@ void main(void){
         DELAY_US(100000);
 
         if(RmsState == BEING_CALCED){
-            rms_value = SCALE*rms(rms_buf_ptr);
+            rms_plot = rms(rms_buf_ptr);
+            rms_value = SCALE*(float)rms_plot;
             RmsState = ACCUMULATING;
         }
 
@@ -91,14 +91,14 @@ __interrupt void adc_isr(void){
     GPIO_setHigh(myGpio, GPIO_Number_16);
     ADC_Obj *adc = (ADC_Obj*) myAdc;
     curr1[counter] = ((int16_t)(adc->ADCRESULT[0])-OFFSET);
-//    stepNotch(&NotchC1, _IQ(curr1[counter]));
-    curr2[counter] = (int16_t)_IQtoF((stepNotch(&NotchC1, _IQ((float) curr1[counter]))));
+//    curr2[counter] = (int16_t)_IQtoF((stepNotch(&NotchC1, _IQ((float) curr1[counter]))));
+    curr2[counter] = mov_avg(curr1, 8, counter);
     volt1[counter] = ((int16_t)(adc->ADCRESULT[1])-OFFSET);
 //    curr2[counter] = ((int16_t)(adc->ADCRESULT[2])-OFFSET);
     volt2[counter] = ((int16_t)(adc->ADCRESULT[3])-OFFSET);
 
     if(RmsState == ACCUMULATING){
-        *(rms_buf_ptr + rms_pos++) = (SIGNAL_TYPE) curr1[counter];
+        *(rms_buf_ptr + rms_pos++) = (SIGNAL_TYPE) curr2[counter];
     }
     if(rms_pos == RMS_BUF_SIZE){
         rms_pos = 0;

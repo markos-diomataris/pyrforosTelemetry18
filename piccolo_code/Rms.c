@@ -9,13 +9,13 @@
 #include "Rms.h"
 #include "math.h"
 
-SIGNAL_TYPE rms(SIGNAL_TYPE * buff){
+int16_t rms(int16_t * buff){
 
     int i;
-    SIGNAL_TYPE acc=0;
+    double acc=0;
     for(i=0;i<RMS_BUF_SIZE;i++){
         acc += (*(buff+i))* (*(buff+i));
     }
 
-    return sqrt(acc/(double)RMS_BUF_SIZE);
+    return (int)sqrt(acc/(double)RMS_BUF_SIZE);
 }

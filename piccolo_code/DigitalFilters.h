@@ -86,6 +86,12 @@ static struct NotchFilter_DF2 NotchC1 = {
     .stages=STAGES
 };
 
+
+/*
+ * Simple moving average filter
+ */
+int16_t mov_avg(int16_t * x,uint8_t w,uint8_t pos);
+
 #endif
 
 
