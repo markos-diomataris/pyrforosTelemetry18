@@ -51,13 +51,14 @@ SIGNAL_TYPE stepNotch(struct NotchFilter_DF2 * f,COEFF_TYPE input){
  *
  */
 
+#define BUFFERS_SIZE 20
 int16_t mov_avg(int16_t * x,uint8_t w,uint8_t pos){
     uint8_t i=0;
-    int16_t acc=0,ret;
+    int16_t acc=0;
     _iq temp;
     for(i=0;i<w;i++){
         acc = acc + *(x+pos);
-        pos = (pos == 0) ? 99 : pos-1;
+        pos = (pos == 0) ? (BUFFERS_SIZE-1) : pos-1;
     }
     temp=_IQ((float)acc);
     temp = _IQdiv(temp,_IQ((float)w));

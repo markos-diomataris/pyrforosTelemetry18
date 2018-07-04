@@ -7,15 +7,18 @@
 
 
 #include "Rms.h"
-#include "math.h"
+//#include "math.h"
 
 int16_t rms(int16_t * buff){
 
     int i;
-    double acc=0;
+    int32_t acc=0;
+    int16_t ret;
     for(i=0;i<RMS_BUF_SIZE;i++){
-        acc += (*(buff+i))* (*(buff+i));
+        acc += (int32_t)(*(buff+i))* (*(buff+i));
     }
-
-    return (int)sqrt(acc/(double)RMS_BUF_SIZE);
+    _iq acc_iq =_IQ((float)acc),root;
+    root = _IQsqrt(_IQdiv(acc_iq,_IQ((float)RMS_BUF_SIZE)));
+    ret = (int16_t)_IQtoF(root);
+    return ret;
 }

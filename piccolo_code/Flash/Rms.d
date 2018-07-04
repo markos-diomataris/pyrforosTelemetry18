@@ -35,8 +35,6 @@ Rms.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/device_support/f2802x/com
 Rms.obj: ../DigitalFilters.h
 Rms.obj: /home/markos/ti/C2000Ware_1_00_03_00_Software/libraries/math/IQmath/c28/include/IQmathLib.h
 Rms.obj: /opt/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/include/limits.h
-Rms.obj: /opt/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/include/math.h
-Rms.obj: /opt/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/include/_defs.h
 
 ../Rms.c: 
 ../Rms.h: 
@@ -73,5 +71,3 @@ Rms.obj: /opt/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/include/_defs.h
 ../DigitalFilters.h: 
 /home/markos/ti/C2000Ware_1_00_03_00_Software/libraries/math/IQmath/c28/include/IQmathLib.h: 
 /opt/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/include/limits.h: 
-/opt/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/include/math.h: 
-/opt/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/include/_defs.h: 
