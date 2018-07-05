@@ -1,5 +1,7 @@
 #include<iostream>
 #include<stdlib.h>
+#include <math.h>
+
 using namespace std;
 float conv_coords(float in_coords)
  {
@@ -13,9 +15,27 @@ float conv_coords(float in_coords)
  return theFinalAnswer;
  }
 
+
+// converts lat/long from Adafruit
+// degree-minute format to decimal-degrees
+double convertDegMinToDecDeg (float degMin) {
+  double min = 0.0;
+  double decDeg = 0.0;
+
+  //get the minutes, fmod() requires double
+  min = fmod((double)degMin, 100.0);
+ 
+  //rebuild coordinates in decimal degrees
+  degMin = (int) ( degMin / 100 );
+  decDeg = degMin + ( min / 60 );
+
+  return decDeg;
+}
+
 int main(int argc, char** argv){
   float c = atof(argv[1]);
-  c = conv_coords(c);
-  cout<<c<<endl;
+  double output;
+  output = convertDegMinToDecDeg(c);
+  cout<<output<<endl;
   return 0;
-}  
+}
