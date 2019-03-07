@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "**BE CAUTIOUS this script may fuckup your project dir**"
+echo "**BE CAUTIOUS this script may harm your project dir**"
 echo "Are you sure you want to copy back to the project dir?"
 read ans
 if [[ "$ans" != "y" ]]; then
