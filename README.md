@@ -7,3 +7,4 @@ The arduino was responsible for safely managing the incoming data, and storing t
 Finaly it displayed the value of the RMS Current on an lcd screen for the driver.
 All this data (Power,Current,Location) was then processed by a Matlab script performing round segmentation and mapping the values on
 the track's model. We were then able to evaluate the drivers performace and adap our driving behaviour on the track. 
+
